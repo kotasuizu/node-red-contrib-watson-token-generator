@@ -1,0 +1,74 @@
+<!--
+  Copyright (c) 2017 Kota Suizu
+  Released under the MIT license
+  http://opensource.org/licenses/mit-license.php
+-->
+
+<script type="text/x-red" data-template-name="Watson-Token-Generator">
+  <div class="form-row">
+    <label for="node-input-service"><i class="fa fa-bookmark"></i> Service</label>
+    <select type="text" id="node-input-service">
+        <option value="https://gateway.watsonplatform.net/conversation/api">Conversation</option>
+        <option value="https://gateway.watsonplatform.net/discovery/api">Discovery</option>
+        <option value="https://gateway.watsonplatform.net/document-conversion/api">Document Conversion</option>
+        <option value="https://gateway.watsonplatform.net/language-translation/api">Language Translation</option>
+        <option value="https://gateway.watsonplatform.net/natural-language-classifier/api">Natural Language Classifier</option>
+        <option value="https://gateway.watsonplatform.net/personality-insights/api">Personality Insights</option>
+        <option value="https://gateway.watsonplatform.net/retrieve-and-rank/api">Retrieve and Rank</option>
+        <option value="https://stream.watsonplatform.net/speech-to-text/api">Speech to Text</option>
+        <option value="https://stream.watsonplatform.net/text-to-speech/api">Text to Speech</option>
+        <option value="https://gateway.watsonplatform.net/tone-analyzer/api">Tone Analyzer</option>
+    </select>
+  </div>
+  <div class="form-row">
+    <label for="node-input-username"><i class="fa fa-user"></i> Username</label>
+    <input type="text" id="node-input-username">
+  </div>
+  <div class="form-row">
+    <label for="node-input-password"><i class="fa fa-lock"></i> Password</label>
+    <input type="password" id="node-input-password">
+  </div>
+  <div class="form-row">
+    <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+    <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+</script>
+
+<script type="text/x-red" data-help-name="Watson-Token-Generator">
+  <p>This node that accepts a Watson services credentials and URL and returns an auth token.</p>
+</script>
+
+<script type="text/javascript">
+  RED.nodes.registerType('Watson-Token-Generator', {
+    category: 'function',
+    defaults: {
+      name: {
+        value: ""
+      },
+      service: {
+        value: "https://gateway.watsonplatform.net/conversation/api",
+        required: true
+      }
+    },
+    credentials: {
+      username: {
+        type: "text",
+        required: true
+      },
+      password: {
+        type: "password",
+        required: true
+      }
+    },
+    color: "#00A0E2",
+    inputs: 1,
+    outputs: 1,
+    icon: "key.svg",
+    label: function() {
+      return this.name || "Watson Token Generator";
+    },
+    labelStyle: function() {
+      return this.name ? "node_label_italic" : "";
+    }
+  });
+</script>
