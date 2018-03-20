@@ -31,7 +31,12 @@ module.exports = function(RED) {
         url: node.service
       }).getToken((err, token) => {
         if (err) {
-          node.error('Error retrieving token: ' + err.message);
+          var myErr = {
+            "inputMessage" : msg,
+            "error" : err
+          };
+          console.log(myErr);
+          node.error('Error retrieving token: ' + err.message, myErr);
         } else {
           // note: tokens are percent-encoded already and must not be double-encoded
           msg.payload = token;
